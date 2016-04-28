@@ -3,12 +3,36 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script>
-			$('document').ready(function(){
-				console.log('wctr');
+            $('document').ready(function () {
+                var horizontalDirection = 1;
+                var verticalDirection = 1;
+                var height = $(document).height();
+			    window.setInterval(function () {
+			        if ($(document).width() - parseInt($("#wctr").width()) == parseInt($("#wctr").css("right"))) {
+			            horizontalDirection = -1;
+			        }
+			        else if (parseInt($("#wctr").css("right")) == 0) {
+			            horizontalDirection = 1;
+			        }
+			        $("#wctr").css("right", parseInt($("#wctr").css("right")) + horizontalDirection)
+
+			        if (height - parseInt($("#wctr").height()*1.9) == parseInt($("#wctr").css("top"))) {
+			            verticalDirection = -1;
+			        }
+			        else if (parseInt($("#wctr").css("top")) == 100) {
+			            verticalDirection = 1;
+			        }
+			        $("#wctr").css("top", parseInt($("#wctr").css("top")) + verticalDirection)
+			    }, window.speed);
 			});
 		</script>
 	</head>
 	<style>
+        #wctr{
+            position: absolute;
+            right: 0;
+            top: 100px;
+        }
 		body{
 			background-color: #111111;
 			color: #EEEEEE;
@@ -19,6 +43,6 @@
 		}
 	</style> 
 	<body>
-		<p id='wctr'>WC</p>
+		<p id='wctr'>WCTR</p>
 	</body>
 </html>
