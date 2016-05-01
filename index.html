@@ -1,48 +1,94 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script>
-            $('document').ready(function () {
-                var horizontalDirection = 1;
-                var verticalDirection = 1;
-                var height = $(document).height();
-			    window.setInterval(function () {
-			        if ($(document).width() - parseInt($("#wctr").width()) == parseInt($("#wctr").css("right"))) {
-			            horizontalDirection = -1;
-			        }
-			        else if (parseInt($("#wctr").css("right")) == 0) {
-			            horizontalDirection = 1;
-			        }
-			        $("#wctr").css("right", parseInt($("#wctr").css("right")) + horizontalDirection)
+<head>
+ <style>
+ body{
+   background-color: black;
+ }
+ </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(e){
+      var directions = [-1, 1];
+      var height = $(document).height();
+      var width = $(document).width();
+      var left = Math.floor((Math.random() * (width - 80)));
+      var top = Math.floor((Math.random() * (height - 80)));
 
-			        if (height - parseInt($("#wctr").height()*1.9) == parseInt($("#wctr").css("top"))) {
-			            verticalDirection = -1;
-			        }
-			        else if (parseInt($("#wctr").css("top")) == 100) {
-			            verticalDirection = 1;
-			        }
-			        $("#wctr").css("top", parseInt($("#wctr").css("top")) + verticalDirection)
-			    }, window.speed);
-			});
-		</script>
-	</head>
-	<style>
-        #wctr{
-            position: absolute;
-            right: 0;
-            top: 100px;
+      $("body").append("<img id='wctr' src='wctr.png' height=80 width=80 />");
+      var wctr = $("#wctr");
+      wctr.css("position", "absolute").css("left", left).css("top", top);
+
+      var left = Math.floor((Math.random() * (width - 80)));
+      var top = Math.floor((Math.random() * (height - 80)));
+
+      $("body").append("<img id='sonikas' src='sonikas.png' height=80 width=80/>");
+      var sonikas = $("#sonikas");
+      sonikas.css("position", "absolute").css("left", left).css("top", top);
+
+      var directionLeftWctr = directions[Math.floor(Math.random() * 2)];
+      var directionTopWctr = directions[Math.floor(Math.random() * 2)];
+
+      setInterval(function(){
+        this.currentLeft = parseInt(wctr.css("left"));
+        this.currentTop = parseInt(wctr.css("top"));
+
+        if(this.currentLeft == width - 80){
+          directionLeftWctr = -1;
         }
-		body{
-			background-color: #111111;
-			color: #EEEEEE;
-			font-family: 'Impact';
-			font-size: 100px;
-			text-align: right;
-			padding-right: 50px;
-		}
-	</style> 
-	<body>
-		<p id='wctr'>WCTR</p> 
-	</body>
+        if(this.currentLeft == 0){
+          directionLeftWctr = 1;
+        }
+        if(this.currentTop == height - 80){
+          directionTopWctr = -1;
+        }
+        if(this.currentTop == 0){
+          directionTopWctr = 1;
+        }
+
+        wctr.css("left", currentLeft + directionLeftWctr)
+        wctr.css("top", currentTop + directionTopWctr)
+
+      }, 1);
+
+      var directionLeftSonikas = directions[Math.floor(Math.random() * 2)];
+      var directionTopSonikas = directions[Math.floor(Math.random() * 2)];
+
+      setInterval(function(){
+        this.currentLeft = parseInt(sonikas.css("left"));
+        this.currentTop = parseInt(sonikas.css("top"));
+        this.opLeft = parseInt(wctr.css("left"));
+        this.opTop = parseInt(wctr.css("top"));
+
+        if(this.currentLeft == width - 80){
+          directionLeftSonikas = -1;
+        }
+        if(this.currentLeft == 0){
+          directionLeftSonikas = 1;
+        }
+        if(this.currentTop == height - 80){
+          directionTopSonikas = -1;
+        }
+        if(this.currentTop == 0){
+          directionTopSonikas = 1;
+        }
+
+        //if (this.opLeft == this.currentLeft + 80 && directionLeftSonikas == 1 && directionLeftWctr == -1 && this.opTop == this.currentTop) {
+        //    directionLeftSonikas = -1;
+        //    directionLeftWctr = 1;
+        //}
+
+        sonikas.css("left", currentLeft + directionLeftSonikas)
+        sonikas.css("top", currentTop + directionTopSonikas)
+
+      }, 1);
+    });
+  </script>
+<title>Woooow</title>
+</head>
+
+<body>
+
+</body>
+
 </html>
