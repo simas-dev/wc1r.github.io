@@ -17,17 +17,15 @@
   <script>
     $(document).ready(function(e){
       var directions = [-1, 1];
-      var height = $(document).height();
-      var width = $(document).width();
-      var left = Math.floor((Math.random() * (width - 80)));
-      var top = Math.floor((Math.random() * (height - 80)));
+      var left = Math.floor((Math.random() * ($(document).width() - 80)));
+      var top = Math.floor((Math.random() * ($(document).height() - 80)));
 
       $("body").append("<img id='wctr' src='wctr.jpg' height=80 width=80 />");
       var wctr = $("#wctr");
       wctr.css("position", "absolute").css("left", left).css("top", top);
 
-      var left = Math.floor((Math.random() * (width - 80)));
-      var top = Math.floor((Math.random() * (height - 80)));
+      var left = Math.floor((Math.random() * ($(document).width() - 80)));
+      var top = Math.floor((Math.random() * ($(document).height() - 80)));
 
       $("body").append("<img id='sonikas' src='sanik.gif' height=80 width=80/>");
       var sonikas = $("#sonikas");
@@ -40,13 +38,13 @@
         this.currentLeft = parseInt(wctr.css("left"));
         this.currentTop = parseInt(wctr.css("top"));
 
-        if(this.currentLeft == width - 80){
+        if(this.currentLeft == $(document).width() - 80){
           directionLeftWctr = -1;
         }
         if(this.currentLeft == 0){
           directionLeftWctr = 1;
         }
-        if(this.currentTop == height - 80){
+        if(this.currentTop == $(document).height() - 80){
           directionTopWctr = -1;
         }
         if(this.currentTop == 0){
@@ -67,13 +65,13 @@
         this.opLeft = parseInt(wctr.css("left"));
         this.opTop = parseInt(wctr.css("top"));
 
-        if(this.currentLeft == width - 80){
+        if(this.currentLeft == $(document).width() - 80){
           directionLeftSonikas = -1;
         }
         if(this.currentLeft == 0){
           directionLeftSonikas = 1;
         }
-        if(this.currentTop == height - 80){
+        if(this.currentTop == $(document).height() - 80){
           directionTopSonikas = -1;
         }
         if(this.currentTop == 0){
